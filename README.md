@@ -1,0 +1,1 @@
+# [NODEJS]Japanese scraping
