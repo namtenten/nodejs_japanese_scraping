@@ -132,6 +132,7 @@ function scrapeVocabularies(req, res){
 
 	for(let i = 1; i<= max_number; i++){
 		let url = original_url + i;
+		let filename = "output_" + ("" + i).padStart(2, '0') + ".html"
 
 	    request(url, function(error, response, html){
 	        // First we'll check to make sure no errors occurred when making the request
@@ -206,7 +207,8 @@ function scrapeVocabularies(req, res){
 
 	        result_text = "<!DOCTYPE html>\n<html>\n\t<head><meta charset=\"utf-8\">\n<title>JLPT " + req["jlpt"] + "</title>\n\t<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css\">\n\t</head>\n\t<body>\n\t\t<table>" + result_text + "\n\t\t</table>\n\t</body>\n</html>"
 			// fs.writeFile('output.json', JSON.stringify(json, null, 4), function(err){
-			fs.writeFile('output/' + req["jlpt"] + '/vocabularies/output_' + ("" + i).padStart(2, '0') + '.html', result_text, function(err){
+			res.send("Done!")
+			fs.writeFile('output/' + req["jlpt"] + '/vocabularies/' + filename, result_text, function(err){
 			    console.log('File successfully written!');
 			})
 
